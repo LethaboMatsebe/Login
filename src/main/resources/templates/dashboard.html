@@ -1,0 +1,152 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Dashboard</title>-->
+<!--    <style>-->
+<!--        body { font-family: Arial; background: #f4f4f4; }-->
+<!--        .card {-->
+<!--            width: 350px;-->
+<!--            margin: 50px auto;-->
+<!--            padding: 20px;-->
+<!--            background: white;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0px 0px 10px gray;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    &lt;!&ndash;For Admin&ndash;&gt;-->
+<!--<div sec:authorize="hasRole('ADMIN')">-->
+<!--<div class="card">-->
+<!--    <h2>Admin Dashboard</h2>-->
+
+<!--    <p><strong>Email:</strong> <span th:text="${email}"></span></p>-->
+<!--    <p><strong>Role:</strong> <span th:text="${role}"></span></p>-->
+
+<!--    <hr>-->
+
+<!--    <button>Manage Users</button>-->
+<!--    <button>System Settings</button>-->
+<!--</div>-->
+<!--</div>-->
+
+<!-- &lt;!&ndash;Not Admin&ndash;&gt;-->
+<!--<div sec:authorize="!hasRole('ADMIN')">-->
+<!--<h2>Access Denied</h2>-->
+
+<!--<p>You are not allowed to access this page.</p>-->
+
+<!--<p>Your role: <span th:text="${role}"></span></p>-->
+
+<!--<a href="/login">Go back</a>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        /* Base Styling */
+      body {
+          font-family: 'Inter', sans-serif;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          color: #333;
+      }
+
+          /* Card Container */
+      .card {
+            width: 400px;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+       }
+          /* Admin Styles */
+        h2 { margin-bottom: 1.5rem; color: #1a202c; font-weight: 600; }
+        .info-row { text-align: left; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .info-row strong { color: #4a5568; }
+        .badge {
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+          hr { border: 0; border-top: 1px solid #edf2f7; margin: 1.5rem 0; }
+
+        /* Buttons */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+         .btn-primary { background: #4a90e2; color: white; }
+        .btn-primary:hover { background: #357abd; }
+        .btn-outline { background: transparent; border: 1px solid #cbd5e0; color: #4a5568; }
+        .btn-outline:hover { background: #f7fafc; }
+
+        /* Access Denied Styles */
+        .denied-card { border-top: 5px solid #e53e3e; }
+        .denied-icon { font-size: 3rem; color: #e53e3e; margin-bottom: 1rem; }
+        .error-text { color: #718096; margin-bottom: 1.5rem; }
+        .back-link { color: #4a90e2; text-decoration: none; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<!--For Admin-->
+<div sec:authorize="hasRole('ADMIN')">
+    <div class="card">
+        <h2>Admin Dashboard</h2>
+
+        <div class="info-row">
+            <strong>Email:</strong> <span th:text="${email}">admin@example.com</span>
+        </div>
+        <div class="info-row">
+            <strong>Role:</strong> <span class="badge" th:text="${role}">ADMIN</span>
+        </div>
+
+        <hr>
+
+        <div class="btn-group">
+            <button class="btn-primary">Manage Users</button>
+            <button class="btn-outline">System Settings</button>
+        </div>
+    </div>
+</div>
+
+
+<!--Not Admin-->
+<div sec:authorize="!hasRole('ADMIN')">
+    <div class="card denied-card">
+        <div class="denied-icon">🚫</div>
+        <h2>Access Denied</h2>
+        <p class="error-text">You do not have permission to view the administrative panel.</p>
+        <p class="info-row" style="text-align: center;">
+            <strong>Current Role:</strong> <span class="badge" th:text="${role}">USER</span>
+        </p>
+        <hr>
+        <a href="/login" class="back-link">← Return to Login</a>
+    </div>
+</div>
+
+</body>
+</html>
