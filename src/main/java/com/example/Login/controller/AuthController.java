@@ -41,9 +41,9 @@ public class AuthController {
 
 
                 if (isAdmin) {
-                    return "redirect:http://localhost:8083/dashboard/dashboard.xhtml";
+                    return "redirect:https://dashboard-tdwl.onrender.com/dashboard/dashboard.xhtml";
                 } else {
-                    return "redirect:http://localhost:8083/dashboard/user.xhtml";
+                    return "redirect:https://dashboard-tdwl.onrender.com/dashboard/user.xhtml";
                 }
 
             }
